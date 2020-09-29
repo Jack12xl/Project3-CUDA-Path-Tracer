@@ -73,6 +73,7 @@ set(headers
     src/sceneStructs.h
     src/preview.h
     src/utilities.h
+    src/Material.h
     )
 
 set(sources
@@ -84,6 +85,7 @@ set(sources
     src/scene.cpp
     src/preview.cpp
     src/utilities.cpp
+    src/Material.cu
     )
 
 list(SORT headers)
