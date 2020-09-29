@@ -26,8 +26,14 @@ endif()
 find_package(CUDA 10 REQUIRED)
 include(${CMAKE_MODULE_PATH}/CUDAComputesList.cmake)
 
+
 list(APPEND CUDA_NVCC_FLAGS ${CUDA_GENERATE_CODE})
 list(APPEND CUDA_NVCC_FLAGS_DEBUG "-g -G")
+#Jack12 add dc in order to call __device__ in seperate file in __global__
+set(CUDA_NVCC_FLAGS "${CUDA_NVCC_FLAGS} -dc")
+#set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -dc")
+#SET(CUDA_SEPARABLE_COMPILATION ON)
+
 set(CUDA_VERBOSE_BUILD ON)
 
 if(WIN32)
@@ -76,6 +82,7 @@ set(headers
     src/Material.h
     )
 
+
 set(sources
     src/main.cpp
     src/stb.cpp
@@ -86,6 +93,8 @@ set(sources
     src/preview.cpp
     src/utilities.cpp
     src/Material.cu
+    src/intersections.cu # add corresponding .cu files
+    src/interactions.cu # add corresponding .cu files
     )
 
 list(SORT headers)
